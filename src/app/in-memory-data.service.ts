@@ -17,7 +17,7 @@ export class InMemoryDataService implements InMemoryDbService {
 			{ 
 				id: 'c3',
 				title: 'Notes are fun',
-				content: 'meh'
+				content: 'notes are meh'
 			}
 		];
 		return {notes};

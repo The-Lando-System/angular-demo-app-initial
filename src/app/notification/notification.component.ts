@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Broadcaster } from '../broadcaster.service';
 import { Notification } from '../notification.service';
 
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit {
 

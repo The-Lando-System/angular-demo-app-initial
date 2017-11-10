@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NoteService, Note } from '../note.service';
@@ -6,8 +6,7 @@ import { NoteService, Note } from '../note.service';
 @Component({
   selector: 'app-note-editor',
   templateUrl: './note-editor.component.html',
-  styleUrls: ['./note-editor.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ['./note-editor.component.css']
 })
 export class NoteEditorComponent implements OnInit {
 
