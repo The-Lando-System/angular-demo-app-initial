@@ -22,4 +22,10 @@ describe('NotesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`should start with no notes`, async(() => {
+    const fixture = TestBed.createComponent(NotesComponent);
+    const notesComp = fixture.debugElement.componentInstance;
+    expect(notesComp.notes.length).toEqual(0);
+  }));
 });

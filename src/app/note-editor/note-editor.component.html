@@ -1,3 +1,16 @@
-<p>
-  note-editor works!
-</p>
+<h4>Editing Note</h4>
+<div *ngIf="note" class="card">
+  <div class="card-body">
+    <h4 class="card-title">
+      <div class="input-group">
+        <span class="input-group-addon">Title</span>
+        <input [(ngModel)]="note.title" type="text" class="form-control" placeholder="Title">
+      </div>
+    </h4>
+    <p class="card-text">
+      <label for="noteContentTextArea">Content</label>
+      <textarea [(ngModel)]="note.content" class="form-control" id="noteContentTextArea" rows="3"></textarea>
+    </p>
+    <button (click)="createOrSaveNote()" class="btn btn-primary">{{note.id ? 'Save' : 'Create'}}</button>
+  </div>
+</div>

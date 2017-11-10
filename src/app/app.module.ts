@@ -11,16 +11,20 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NotesComponent } from './notes/notes.component';
 import { NoteEditorComponent } from './note-editor/note-editor.component';
 
+import { Broadcaster } from './broadcaster.service';
+import { NotificationService } from './notification.service';
 import { NoteService } from './note.service';
 
 import { AppRoutingModule } from './app-routing.module';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotesComponent,
     NoteEditorComponent,
-    NavbarComponent
+    NavbarComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [ NoteService ],
+  providers: [ NoteService, NotificationService, Broadcaster ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
