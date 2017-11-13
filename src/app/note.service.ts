@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
+import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, tap, map } from 'rxjs/operators';
@@ -14,6 +15,8 @@ const httpOptions = {
 @Injectable()
 export class NoteService {
 
+  private notes: Note[] = [];
+
   private notesUrl = 'api/notes';
 
   constructor(
@@ -23,7 +26,11 @@ export class NoteService {
 
   getNotes(): Observable<Note[]> {
     return this.http.get<Note[]>(this.notesUrl).pipe(
-      tap((notes:Note[]) => this.notificationSvc.success(`Fetched ${notes.length} notes!`)),
+      tap((notes:Note[]) => {
+        this.notificationSvc.success(`Fetched ${notes.length} notes!`);
+        this.notes = notes;
+        return this.notes;
+      }),
       catchError(this.handleError('getNotes',[]))
     );
   }
@@ -38,14 +45,28 @@ export class NoteService {
 
   updateNote(note: Note): Observable<any> {
     return this.http.put(this.notesUrl, note, httpOptions).pipe(
-      tap( _ => this.notificationSvc.success(`Updated note with id [${note.id}]`)),
+      tap( _ => {
+        this.notificationSvc.success(`Updated note with id [${note.id}]`);
+
+        this.notes.forEach((n:Note) => {
+          if (n.id === note.id) {
+            n = note;
+          }
+        });
+
+        return note;
+      }),
       catchError(this.handleError<any>('updateNote'))
     );
   }
 
   createNote(note: Note): Observable<any> {
     return this.http.post(this.notesUrl, note, httpOptions).pipe(
-      tap((note:Note) => this.notificationSvc.success(`Created note with id [${note.id}]`)),
+      tap((note:Note) => {
+        this.notificationSvc.success(`Created note with id [${note.id}]`);
+        this.notes.push(note);
+        return note;
+      }),
       catchError(this.handleError<any>('createNote'))
     );
   }

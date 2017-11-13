@@ -10,6 +10,7 @@ import { NoteService, Note } from '../note.service';
 export class NotesComponent implements OnInit {
 
   private notes: Note[] = [];
+  private selectedNote: Note;
 
   constructor(
     private noteService: NoteService
@@ -20,6 +21,10 @@ export class NotesComponent implements OnInit {
     .subscribe((notes:Note[]) => {
       this.notes = notes;
     });
+  }
+
+  selectNote(note:Note): void {
+    this.selectedNote = note ? note : null;
   }
 
 }
