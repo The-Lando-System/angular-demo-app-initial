@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { NoteService, Note } from '../note.service';
+import { NoteService, Note } from '../services/note.service';
 
 @Component({
   selector: 'app-note-editor',
@@ -10,29 +10,38 @@ import { NoteService, Note } from '../note.service';
 })
 export class NoteEditorComponent implements OnInit {
 
-  @Input()
-  note: Note;
+  private note: Note;
 
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     private noteSvc: NoteService
   ) { }
 
-  ngOnInit() {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (!this.note) {
-      this.note = new Note('New Title','New Content');
-    }
+  ngOnInit() {
+    this.route.params.forEach((params: Params) => {
+      let noteId = params['id'];
+      if (noteId === 'new'){
+        this.note = new Note('','');
+      } else {
+        this.noteSvc.getNoteById(noteId)
+        .subscribe((note:Note) => {
+          this.note = note;
+        });
+      }
+    });
   }
 
   createOrSaveNote() {
     if (this.note.id) {
-      this.noteSvc.updateNote(this.note).subscribe((note:Note) => {});
-      this.note = null;
+      this.noteSvc.updateNote(this.note).subscribe((note:Note) => {
+        this.router.navigate(['/notes']);
+      });
     } else {
       this.note.id = this.guid();
-      this.noteSvc.createNote(this.note).subscribe((note:Note) => {});
-      this.note = null;
+      this.noteSvc.createNote(this.note).subscribe((note:Note) => {
+        this.router.navigate(['/notes']);
+      });
     }
   }
 

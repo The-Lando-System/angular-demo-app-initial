@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NoteService, Note } from '../note.service';
+import { NoteService, Note } from '../services/note.service';
 
 
 @Component({

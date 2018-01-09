@@ -25,6 +25,11 @@ export class NoteService {
   ) { }
 
   getNotes(): Observable<Note[]> {
+
+    if (this.notes.length !== 0) {
+      return of(this.notes);
+    }
+
     return this.http.get<Note[]>(this.notesUrl).pipe(
       tap((notes:Note[]) => {
         this.notificationSvc.success(`Fetched ${notes.length} notes!`);
@@ -33,9 +38,16 @@ export class NoteService {
       }),
       catchError(this.handleError('getNotes',[]))
     );
+
   }
 
   getNoteById(id:string): Observable<Note> {
+
+    let note = this.notes.find((note:Note) => note.id === id);
+    if (note) {
+      return of(note);
+    }
+
     return this.http.get<Note>(`${this.notesUrl}/?id=${id}`).pipe(
       map(notes => notes[0]),
       tap(note => note ? this.notificationSvc.success(`Fetched note with id [${note.id}]`) : null),

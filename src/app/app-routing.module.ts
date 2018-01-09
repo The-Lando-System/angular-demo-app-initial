@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'notes',
     component: NotesComponent
+  },
+  {
+    path: 'notes/:id',
+    component: NoteEditorComponent
   }
 ];
 

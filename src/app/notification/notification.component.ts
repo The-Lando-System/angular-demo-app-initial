@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Broadcaster } from '../broadcaster.service';
-import { Notification } from '../notification.service';
+import { Broadcaster } from '../services/broadcaster.service';
+import { Notification } from '../services/notification.service';
 
 @Component({
   selector: 'app-notification',
@@ -26,9 +26,7 @@ export class NotificationComponent implements OnInit {
     this.broadcaster.on(Notification.SUCCESS).subscribe((message:string) => {
       this.type = 'success';
       this.message = message;
-      setTimeout(() => {
-        this.reset();
-      },3000);
+      setTimeout( () => this.reset(), 3000);
     });
   }
 
@@ -36,9 +34,7 @@ export class NotificationComponent implements OnInit {
     this.broadcaster.on(Notification.WARN).subscribe((message:string) => {
       this.type = 'warn';
       this.message = message;
-      setTimeout(() => {
-        this.reset();
-      },3000);
+      setTimeout( () => this.reset(), 3000);
     });
   }
 
@@ -46,9 +42,7 @@ export class NotificationComponent implements OnInit {
     this.broadcaster.on(Notification.FAIL).subscribe((message:string) => {
       this.type = 'fail';
       this.message = message;
-      setTimeout(() => {
-        this.reset();
-      },3000);
+      setTimeout( () => this.reset(), 3000);
     });
   }
 

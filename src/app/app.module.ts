@@ -4,19 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService }  from './services/in-memory-data.service';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotesComponent } from './notes/notes.component';
 import { NoteEditorComponent } from './note-editor/note-editor.component';
 
-import { Broadcaster } from './broadcaster.service';
-import { NotificationService } from './notification.service';
-import { NoteService } from './note.service';
+import { Broadcaster } from './services/broadcaster.service';
+import { NotificationService } from './services/notification.service';
+import { NoteService } from './services/note.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NotificationComponent } from './notification/notification.component';
+import { CurrentTimeComponent } from './current-time/current-time.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NotificationComponent } from './notification/notification.component';
     NotesComponent,
     NoteEditorComponent,
     NavbarComponent,
-    NotificationComponent
+    NotificationComponent,
+    CurrentTimeComponent
   ],
   imports: [
     BrowserModule,
