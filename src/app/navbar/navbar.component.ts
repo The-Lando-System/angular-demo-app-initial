@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  private timeUrl: string = 'https://www.time.gov';
-
   constructor() { }
 
   ngOnInit() {

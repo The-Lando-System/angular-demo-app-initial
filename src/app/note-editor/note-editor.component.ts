@@ -24,9 +24,9 @@ export class NoteEditorComponent implements OnInit {
       if (noteId === 'new'){
         this.note = new Note('','');
       } else {
-        this.noteSvc.getNoteById(noteId)
-        .subscribe((note:Note) => {
-          this.note = note;
+        this.noteSvc.getNotes()
+        .subscribe((notes:Note[]) => {
+          this.note = notes.find((note:Note) => note.id === noteId);
         });
       }
     });

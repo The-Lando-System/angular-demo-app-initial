@@ -6,18 +6,18 @@ export class InMemoryDataService implements InMemoryDbService {
 		const notes = [
 			{ 
 				id: 'a1',
-				title: 'Note 1',
-				content: 'My very first note! Yay'
+				title: 'To do...',
+				content: 'Finish notes app'
 			},
 			{ 
 				id: 'b2',
-				title: 'Do something cool...',
-				content: 'Cool!'
+				title: 'Reminder!',
+				content: 'Learn more Angular'
 			},
 			{ 
 				id: 'c3',
-				title: 'Notes are fun',
-				content: 'notes are meh'
+				title: 'Important:',
+				content: 'The password is ********'
 			}
 		];
 		return {notes};

@@ -41,20 +41,6 @@ export class NoteService {
 
   }
 
-  getNoteById(id:string): Observable<Note> {
-
-    let note = this.notes.find((note:Note) => note.id === id);
-    if (note) {
-      return of(note);
-    }
-
-    return this.http.get<Note>(`${this.notesUrl}/?id=${id}`).pipe(
-      map(notes => notes[0]),
-      tap(note => note ? this.notificationSvc.success(`Fetched note with id [${note.id}]`) : null),
-      catchError(this.handleError('getNoteById',[]))
-    );
-  }
-
   updateNote(note: Note): Observable<any> {
     return this.http.put(this.notesUrl, note, httpOptions).pipe(
       tap( _ => {

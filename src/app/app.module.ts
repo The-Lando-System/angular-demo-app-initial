@@ -17,7 +17,6 @@ import { NoteService } from './services/note.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NotificationComponent } from './notification/notification.component';
-import { CurrentTimeComponent } from './current-time/current-time.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,7 @@ import { CurrentTimeComponent } from './current-time/current-time.component';
     NotesComponent,
     NoteEditorComponent,
     NavbarComponent,
-    NotificationComponent,
-    CurrentTimeComponent
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
